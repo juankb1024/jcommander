@@ -260,7 +260,9 @@ public class Parameterized {
       } else {
           m_field.set(object, value);
       }
-    } catch (IllegalAccessException | IllegalArgumentException ex) {
+    } catch ( IllegalArgumentException ex) {
+      throw new ParameterException(errorMessage(m_method, ex));
+    } catch (IllegalAccessException ex){
       throw new ParameterException(errorMessage(m_method, ex));
     } catch (InvocationTargetException ex) {
       // If a ParameterException was thrown, don't wrap it into another one
